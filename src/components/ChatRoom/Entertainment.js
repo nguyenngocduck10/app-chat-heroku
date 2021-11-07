@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Input, Typography, Form, Radio, Statistic } from "antd";
 import UserInfo from "./UserInfo";
 import RoomList from "./RoomList";
 import styled from "styled-components";
 import firebase, { db } from "../../firebase/config";
 import { AuthContext } from "../../Context/AuthProvider";
-import { useMemo } from "react/cjs/react.development";
 import AppProvider, { AppContext } from "../../Context/AppProvider";
 import useFirestore from "../../hooks/useFireStore";
 import { addDocument } from "../../firebase/services";
@@ -104,6 +103,7 @@ function Entertainment() {
         operator: "==",
         compareValue: "DadJrgwhK4Ovent4l70N"
     }), [selectedRoom.id]);
+    console.log('condition---', { condition })
 
     const listQuestions = useFirestore('entertainment', condition);
 
