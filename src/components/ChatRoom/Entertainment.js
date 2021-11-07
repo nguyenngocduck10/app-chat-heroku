@@ -98,6 +98,15 @@ function Entertainment() {
     const [isFinish, setIsFinish] = useState(false);
     let value_radio = "";
 
+    console.log('selectedRoom---', { selectedRoom })
+    const condition = useMemo(() => ({
+        fieldName: 'roomId',
+        operator: "==",
+        compareValue: "DadJrgwhK4Ovent4l70N"
+    }), [selectedRoom.id]);
+
+    const listQuestions = useFirestore('entertainment', condition);
+
     const getUser = async () => {
         let tmp_point = await db.collection("users")
             .where('uid', '==', uid)
@@ -144,19 +153,10 @@ function Entertainment() {
         }
     }, [isFinish]);
 
-    console.log({ selectedRoom })
-    const condition = useMemo(() => ({
-        fieldName: 'roomId',
-        operator: "==",
-        compareValue: "DadJrgwhK4Ovent4l70N"
-    }), [selectedRoom.id]);
-
-    const listQuestions = useFirestore('entertainment', condition);
-
     const onFinish = () => {
         setIsFinish(true);
     }
-    
+
     return (
         <WrapperStyled>
             {
