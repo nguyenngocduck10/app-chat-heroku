@@ -144,10 +144,11 @@ function Entertainment() {
         }
     }, [isFinish]);
 
+    console.log({ selectedRoom })
     const condition = useMemo(() => ({
         fieldName: 'roomId',
         operator: "==",
-        compareValue: selectedRoom.id === "DadJrgwhK4Ovent4l70N" ? "DadJrgwhK4Ovent4l70N" : ""
+        compareValue: "DadJrgwhK4Ovent4l70N"
     }), [selectedRoom.id]);
 
     const listQuestions = useFirestore('entertainment', condition);
@@ -155,7 +156,7 @@ function Entertainment() {
     const onFinish = () => {
         setIsFinish(true);
     }
-    // console.log({ listQuestions })
+    
     return (
         <WrapperStyled>
             {
